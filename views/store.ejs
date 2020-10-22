@@ -4,6 +4,10 @@
         <title>The Generics | Store</title>
         <meta name="description" content="This is the description">
         <link rel="stylesheet" href="styles.css" />
+        <script src="https://checkout.stripe.com/checkout.js" defer></script>
+        <script>
+            var stripePublicKey = '<%= stripePublicKey %>'
+        </script>
         <script src="store.js" async></script>
     </head>
     <body>
@@ -37,22 +41,16 @@
         <section class="container content-section">
             <h2 class="section-header">MERCH</h2>
             <div class="shop-items">
-                <div class="shop-item">
-                    <span class="shop-item-title">T-Shirt</span>
-                    <img class="shop-item-image" src="Images/Shirt.png">
+                <% items.merch.forEach(function(item){ %>
+                <div class="shop-item" data-item-id="<%= item.name%>">
+                    <span class="shop-item-title"><%= item.name%></span>
+                    <img class="shop-item-image" src="Images/<%= item.imgName%>">
                     <div class="shop-item-details">
-                        <span class="shop-item-price">$19.99</span>
+                        <span class="shop-item-price"><%= item.price / 100 %></span>
                         <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
                     </div>
                 </div>
-                <div class="shop-item">
-                    <span class="shop-item-title">Coffee Cup</span>
-                    <img class="shop-item-image" src="Images/Cofee.png">
-                    <div class="shop-item-details">
-                        <span class="shop-item-price">$6.99</span>
-                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
-                    </div>
-                </div>
+                <% }) %>
             </div>
         </section>
         <section class="container content-section">
@@ -76,7 +74,7 @@
                 <ul class="nav footer-nav">
                     <li>
                         <a href="https://www.youtube.com" target="_blank">
-                            <img src="Images/YouTube Logo.png">
+                            <img src="Images/Youtube Logo.png">
                         </a>
                     </li>
                     <li>

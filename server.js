@@ -19,12 +19,13 @@ app.get('/store', (req,res) =>{
             res.status(500).end()
         }else{
             res.render('store.ejs',{
+                stripePublicKey: stripePublicKey,
                 items: JSON.parse(data)
             })
         }
     })
 })
-
+ 
 app.listen(3000, ()=>{
     console.log('Server has started')
 })
