@@ -14,12 +14,12 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 app.get('/store', (req,res) =>{
-    fs.readFile('Items.json', (error,)=>{
+    fs.readFile('items.json', (error, data)=>{
         if(error){
             res.status(500).end()
         }else{
             res.render('store.ejs',{
-                items:JSON.parse(data)
+                items: JSON.parse(data)
             })
         }
     })
